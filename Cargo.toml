@@ -1,0 +1,6 @@
+[workspace]
+members = [
+    "scene_stack",
+    "pong_lib",
+    "pong_fe_glutin",
+]

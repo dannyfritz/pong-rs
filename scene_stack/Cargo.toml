@@ -1,0 +1,6 @@
+[package]
+name = "scene_stack"
+version = "0.1.0"
+authors = ["Danny Fritz <dannyfritz@gmail.com>"]
+
+[dependencies]
