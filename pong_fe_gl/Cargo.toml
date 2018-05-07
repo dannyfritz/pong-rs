@@ -1,0 +1,10 @@
+[package]
+name = "pong_fe_gl"
+version = "0.1.0"
+authors = ["Danny Fritz <dannyfritz@gmail.com>"]
+
+[dependencies]
+pong_lib = { path = "../pong_lib" }
+glium = "*"
+nalgebra = "0.14"
+time = "0.1.39"

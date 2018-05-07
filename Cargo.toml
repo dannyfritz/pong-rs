@@ -2,5 +2,5 @@
 members = [
     "scene_stack",
     "pong_lib",
-    "pong_fe_glutin",
+    "pong_fe_gl",
 ]
