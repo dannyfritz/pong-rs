@@ -4,9 +4,6 @@ extern crate ncollide_geometry;
 pub mod game;
 pub mod menu;
 
-use game::Game;
-use menu::Menu;
-
 pub struct Intents {
     pub paddle_1_up: u8,
     pub paddle_1_down: u8,
@@ -18,8 +15,8 @@ pub struct Intents {
 }
 
 pub enum PongScene {
-    Menu(Menu),
-    Game(Game),
+    Menu(menu::State),
+    Game(game::State),
 }
 
 pub struct PongState {
@@ -29,7 +26,7 @@ pub struct PongState {
 impl PongState {
     pub fn new() -> PongState {
         PongState {
-            scene: PongScene::Game(Game::new()),
+            scene: PongScene::Game(game::State::new()),
         }
     }
     pub fn interpolate(&mut self, dt: f64, intents: &Intents) {

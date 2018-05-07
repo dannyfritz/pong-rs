@@ -3,15 +3,17 @@ pub struct Paddle {
     pub y: f32,
     pub width: f32,
     pub height: f32,
+    pub speed: f32,
 }
 
 impl Paddle {
-    pub fn new() -> Paddle {
+    pub fn new(x: f32) -> Paddle {
         Paddle {
-            x: 0.0,
-            y: 50.0,
-            width: 5.0,
-            height: 5.0,
+            x: x,
+            y: 16.0,
+            width: 1.0,
+            height: 8.0,
+            speed: 20.0,
         }
     }
 }

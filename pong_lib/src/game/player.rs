@@ -7,16 +7,16 @@ pub struct Player {
 }
 
 impl Player {
-    pub fn new() -> Player {
+    pub fn new(x: f32) -> Player {
         Player {
-            paddle: Paddle::new(),
+            paddle: Paddle::new(x),
             endzone: Endzone::new(),
         }
     }
-    pub fn move_up(&mut self, magnitude: f64) {
-        self.paddle.y += magnitude as f32;
+    pub fn move_up(&mut self, dt: f64, magnitude: u8) {
+        self.paddle.y += self.paddle.speed * magnitude as f32 / u8::max_value() as f32 * dt as f32;
     }
-    pub fn move_down(&mut self, magnitude: f64) {
-        self.paddle.y -= magnitude as f32;
+    pub fn move_down(&mut self, dt: f64, magnitude: u8) {
+        self.paddle.y += -self.paddle.speed * magnitude as f32 / u8::max_value() as f32 * dt as f32;
     }
 }

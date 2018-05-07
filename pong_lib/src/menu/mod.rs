@@ -1,9 +1,9 @@
 use Intents;
 use PongScene;
 
-pub struct Menu {}
+pub struct State {}
 
-impl Menu {
+impl State {
     pub fn interpolate(&mut self, dt: f64, intents: &Intents) -> Option<PongScene> {
         None
     }
