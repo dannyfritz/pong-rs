@@ -14,4 +14,18 @@ impl Timer {
             accumulator: 0.0,
         }
     }
+    pub fn tick(&mut self) {
+        let new_time = time::precise_time_s();
+        let frame_time = new_time - self.current_time;
+        self.current_time = new_time;
+        self.accumulator += frame_time;
+    }
+    pub fn drain(&mut self) -> bool {
+        if self.accumulator >= self.dt {
+            self.accumulator -= self.dt;
+            true
+        } else {
+            false
+        }
+    }
 }

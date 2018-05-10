@@ -10,7 +10,7 @@ impl Paddle {
     pub fn new(x: f32) -> Paddle {
         Paddle {
             x: x,
-            y: 16.0,
+            y: 12.0,
             width: 1.0,
             height: 8.0,
             speed: 20.0,

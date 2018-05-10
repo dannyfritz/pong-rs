@@ -31,8 +31,8 @@ impl PongState {
     }
     pub fn interpolate(&mut self, dt: f64, intents: &Intents) {
         let pong_state_option = match &mut self.scene {
-            &mut PongScene::Game(ref mut game) => game.interpolate(dt, intents),
-            &mut PongScene::Menu(ref mut menu) => menu.interpolate(dt, intents),
+            PongScene::Game(game) => game.interpolate(dt, intents),
+            PongScene::Menu(menu) => menu.interpolate(dt, intents),
         };
         if let Some(new_pong_state) = pong_state_option {
             self.scene = new_pong_state;

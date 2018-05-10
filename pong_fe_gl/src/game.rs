@@ -1,12 +1,12 @@
+use GlFrame;
 use Vertex;
-use nalgebra::Matrix4;
-use GlParts;
 use glium::{self, Surface};
+use nalgebra::{Matrix4, Vector3};
 use pong_lib::game;
 
 pub fn render_game(
     state: &game::State,
-    gl_parts: &mut GlParts,
+    gl_parts: &mut GlFrame,
     projection: Matrix4<f32>,
     view: Matrix4<f32>,
 ) {
@@ -16,39 +16,35 @@ pub fn render_game(
 
 fn render_paddle(
     paddle: &game::paddle::Paddle,
-    gl_parts: &mut GlParts,
+    gl_parts: &mut GlFrame,
     projection: Matrix4<f32>,
     view: Matrix4<f32>,
 ) {
-    let projection_slice: [[f32; 4]; 4] = projection.into();
-    let view_slice: [[f32; 4]; 4] = view.into();
-    let model = Matrix4::<f32>::identity();
-    let model_slice: [[f32; 4]; 4] = model.into();
+    let mut model = Matrix4::<f32>::identity();
     let shape = {
         let x = paddle.x;
         let y = paddle.y;
         let w = paddle.width;
         let h = paddle.height;
+        model.append_translation_mut(&Vector3::new(x, y, 0.0));
         vec![
-            Vertex { position: [x, y] },
             Vertex {
-                position: [x + w, y],
+                position: [0.0, 0.0],
             },
-            Vertex {
-                position: [x + w, y + h],
-            },
-            Vertex {
-                position: [x, y + h],
-            },
+            Vertex { position: [w, 0.0] },
+            Vertex { position: [w, h] },
+            Vertex { position: [0.0, h] },
         ]
     };
     let vertex_buffer = glium::VertexBuffer::new(gl_parts.display, &shape).unwrap();
-    let indices = vec![0u16, 1, 2, 0, 2, 3];
     let indices = glium::index::IndexBuffer::new(
         gl_parts.display,
         glium::index::PrimitiveType::TrianglesList,
-        &indices,
+        &vec![0u16, 1, 2, 0, 2, 3],
     ).unwrap();
+    let projection_slice: [[f32; 4]; 4] = projection.into();
+    let view_slice: [[f32; 4]; 4] = view.into();
+    let model_slice: [[f32; 4]; 4] = model.into();
     let uniforms = uniform! {
         projection: projection_slice,
         view: view_slice,

@@ -13,6 +13,7 @@ impl Player {
             endzone: Endzone::new(),
         }
     }
+    pub fn interpolate(&mut self, dt: f64) {}
     pub fn move_up(&mut self, dt: f64, magnitude: u8) {
         self.paddle.y += self.paddle.speed * magnitude as f32 / u8::max_value() as f32 * dt as f32;
     }
