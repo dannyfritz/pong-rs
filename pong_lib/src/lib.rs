@@ -1,5 +1,4 @@
-extern crate nalgebra;
-extern crate ncollide_geometry;
+extern crate ncollide2d;
 
 pub mod game;
 pub mod menu;

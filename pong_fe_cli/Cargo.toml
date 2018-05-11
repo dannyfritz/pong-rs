@@ -4,5 +4,5 @@ version = "0.1.0"
 authors = ["Danny Fritz <dannyfritz@gmail.com>"]
 
 [dependencies]
-pong-lib = { path = "../pong_lib" }
+pong_lib = { path = "../pong_lib" }
 pancurses = "0.15.0"

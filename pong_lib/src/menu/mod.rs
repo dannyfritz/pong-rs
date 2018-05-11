@@ -4,7 +4,7 @@ use PongScene;
 pub struct State {}
 
 impl State {
-    pub fn interpolate(&mut self, dt: f64, intents: &Intents) -> Option<PongScene> {
+    pub fn interpolate(&mut self, _dt: f64, _intents: &Intents) -> Option<PongScene> {
         None
     }
 }

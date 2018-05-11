@@ -4,5 +4,4 @@ version = "0.1.0"
 authors = ["Danny Fritz <dannyfritz@gmail.com>"]
 
 [dependencies]
-nalgebra = "0.14.1"
-ncollide_geometry = "0.6.3"
+ncollide2d = "0.15"

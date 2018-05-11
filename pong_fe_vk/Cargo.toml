@@ -1,5 +1,5 @@
 [package]
-name = "scene_stack"
+name = "pong_fe_vk"
 version = "0.1.0"
 authors = ["Danny Fritz <dannyfritz@gmail.com>"]
 
