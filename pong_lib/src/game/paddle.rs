@@ -1,4 +1,5 @@
-use ncollide2d::{math::{Isometry, Vector as Vector2}, shape::{self, Shape}};
+use game::Collidable;
+use ncollide2d::{shape, math::{Isometry, Vector as Vector2}};
 
 pub struct Paddle {
     pub pos: Vector2<f32>,
@@ -16,10 +17,14 @@ impl Paddle {
             speed: 20.0,
         }
     }
-    pub fn to_iso(&self) -> Isometry<f32> {
+}
+
+impl Collidable for Paddle {
+    type S = shape::Cuboid<f32>;
+    fn to_iso(&self) -> Isometry<f32> {
         Isometry::new(self.pos, 0.0)
     }
-    pub fn to_shape(&self) -> impl Shape<f32> {
+    fn to_shape(&self) -> Self::S {
         shape::Cuboid::new(self.dim / 2.0)
     }
 }

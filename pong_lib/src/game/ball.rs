@@ -1,4 +1,5 @@
-use ncollide2d::{math::{Isometry, Vector as Vector2}, shape::{self, Shape}};
+use game::Collidable;
+use ncollide2d::{shape, math::{Isometry, Vector as Vector2}};
 
 pub struct Ball {
     pub pos: Vector2<f32>,
@@ -17,10 +18,14 @@ impl Ball {
     pub fn interpolate(&mut self, dt: f64) {
         self.pos += self.vel * dt as f32;
     }
-    pub fn to_iso(&self) -> Isometry<f32> {
+}
+
+impl Collidable for Ball {
+    type S = shape::Ball<f32>;
+    fn to_iso(&self) -> Isometry<f32> {
         Isometry::new(self.pos, 0.0)
     }
-    pub fn to_shape(&self) -> impl Shape<f32> {
+    fn to_shape(&self) -> Self::S {
         shape::Ball::new(self.r)
     }
 }

@@ -6,7 +6,13 @@ pub mod player;
 use Intents;
 use PongScene;
 use game::{ball::Ball, player::Player};
-use ncollide2d::query;
+use ncollide2d::{query, math::Isometry, shape::Shape};
+
+pub trait Collidable {
+    type S: Shape<f32>;
+    fn to_iso(&self) -> Isometry<f32>;
+    fn to_shape(&self) -> Self::S;
+}
 
 pub struct State {
     pub score: [usize; 2],
