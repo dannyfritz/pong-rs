@@ -78,7 +78,7 @@ fn render_ball(
         let x = ball.pos.x;
         let y = ball.pos.y;
         let r = ball.r;
-        model.append_translation_mut(&Vector3::new(x - r, y - r, 0.0));
+        model.append_translation_mut(&Vector3::new(x - r / 2.0, y - r / 2.0, 0.0));
         vec![
             Vertex {
                 position: [0.0, 0.0],

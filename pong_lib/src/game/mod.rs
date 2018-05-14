@@ -47,18 +47,17 @@ impl State {
         if let Some(ref mut ball) = self.ball {
             ball.interpolate(dt);
         }
-        if let Some(ref ball) = self.ball {
+        if let Some(ref mut ball) = self.ball {
             for player in self.players.iter() {
                 let ref paddle = player.paddle;
-                let result = query::contact(
+                if let Some(contact) = query::contact(
                     &paddle.to_iso(),
                     &paddle.to_shape(),
                     &ball.to_iso(),
                     &ball.to_shape(),
                     0.0,
-                );
-                if let Some(contact) = result {
-                    println!("CONTACT! {:?}", contact);
+                ) {
+                    ball.bounce(contact.normal.unwrap(), contact.depth);
                 }
             }
         }
