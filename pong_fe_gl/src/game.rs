@@ -35,8 +35,10 @@ fn render_paddle(
                 position: [0.0, 0.0],
             },
             Vertex { position: [w, 0.0] },
-            Vertex { position: [w, h] },
-            Vertex { position: [0.0, h] },
+            Vertex { position: [w, -h] },
+            Vertex {
+                position: [0.0, -h],
+            },
         ]
     };
     let vertex_buffer = glium::VertexBuffer::new(gl_parts.display, &shape).unwrap();
@@ -78,14 +80,15 @@ fn render_ball(
         let x = ball.pos.x;
         let y = ball.pos.y;
         let r = ball.r;
-        model.append_translation_mut(&Vector3::new(x - r / 2.0, y - r / 2.0, 0.0));
+        let d = r * 2.0;
+        model.append_translation_mut(&Vector3::new(x - r, y - r, 0.0));
         vec![
             Vertex {
                 position: [0.0, 0.0],
             },
-            Vertex { position: [r, 0.0] },
-            Vertex { position: [r, r] },
-            Vertex { position: [0.0, r] },
+            Vertex { position: [d, 0.0] },
+            Vertex { position: [d, d] },
+            Vertex { position: [0.0, d] },
         ]
     };
     let vertex_buffer = glium::VertexBuffer::new(gl_parts.display, &shape).unwrap();

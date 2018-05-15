@@ -4,13 +4,15 @@ use game::paddle::Paddle;
 pub struct Player {
     pub paddle: Paddle,
     pub endzone: Endzone,
+    pub score: u16,
 }
 
 impl Player {
-    pub fn new(x: f32) -> Player {
+    pub fn new(x: f32, ez_x: f32) -> Player {
         Player {
             paddle: Paddle::new(x),
-            endzone: Endzone::new(),
+            endzone: Endzone::new(ez_x),
+            score: 0,
         }
     }
     pub fn interpolate(&mut self, _dt: f64) {}

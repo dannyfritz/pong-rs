@@ -9,7 +9,7 @@ mod timer;
 
 use game::render_game;
 use glium::{Surface, glutin::{self, KeyboardInput}};
-use nalgebra::Matrix4;
+use nalgebra::{Matrix4, Vector3};
 use pong_lib::{Intents, PongScene, PongState};
 use timer::Timer;
 // use pong_lib::menu::Menu;
@@ -64,7 +64,9 @@ fn main() -> Result<(), std::io::Error> {
     };
     let mut timer = Timer::new(1.0 / 10.0);
     let projection = Matrix4::<f32>::new_orthographic(0.0, 64.0, 0.0, 32.0, -1.0, 1.0);
+    // projection.append_nonuniform_scaling_mut(&Vector3::new(0.0, -1.0, 0.0));
     let view = Matrix4::<f32>::identity();
+    // view.append_nonuniform_scaling_mut(&Vector3::new(1.0, -1.0, 1.0));
     let mut pong_state = PongState::new();
     let mut intents = Intents {
         menu_up: false,
