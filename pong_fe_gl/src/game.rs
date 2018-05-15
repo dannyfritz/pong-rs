@@ -2,9 +2,30 @@ use GlFrame;
 use Vertex;
 use glium::{self, Surface};
 use nalgebra::{Matrix4, Vector3};
-use pong_lib::game;
+use pong_lib::{game, Sound};
+use rodio;
+use rodio::Source;
+use std::fs::File;
+use std::io::BufReader;
 
-pub fn render_game(
+pub fn render_game_sound(state: &mut game::State, audio_device: &rodio::Device) {
+    for sound in state.sounds.drain(0..) {
+        match sound {
+            Sound::Bounce => {
+                let file = File::open("./assets/bounce.wav").unwrap();
+                let source = rodio::Decoder::new(BufReader::new(file)).unwrap();
+                rodio::play_raw(audio_device, source.convert_samples());
+            }
+            Sound::Score => {
+                let file = File::open("./assets/score.wav").unwrap();
+                let source = rodio::Decoder::new(BufReader::new(file)).unwrap();
+                rodio::play_raw(audio_device, source.convert_samples());
+            }
+        }
+    }
+}
+
+pub fn render_game_graphics(
     state: &game::State,
     gl_parts: &mut GlFrame,
     projection: Matrix4<f32>,

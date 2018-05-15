@@ -13,6 +13,11 @@ pub struct Intents {
     pub menu_select: bool,
 }
 
+pub enum Sound {
+    Bounce,
+    Score,
+}
+
 pub enum PongScene {
     Menu(menu::State),
     Game(game::State),

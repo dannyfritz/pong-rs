@@ -8,3 +8,4 @@ pong_lib = { path = "../pong_lib" }
 glium = "*"
 nalgebra = "0.14"
 time = "0.1.39"
+rodio = "0.7"

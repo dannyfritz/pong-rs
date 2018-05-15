@@ -5,6 +5,7 @@ pub mod player;
 
 use Intents;
 use PongScene;
+use Sound;
 use game::{ball::Ball, player::Player};
 use ncollide2d::{query, math::{Isometry, Vector as Vector2}, shape::Shape};
 
@@ -22,6 +23,7 @@ pub trait Collidable {
 pub struct State {
     pub players: [Player; 2],
     pub ball: Option<Ball>,
+    pub sounds: Vec<Sound>,
 }
 
 impl State {
@@ -32,6 +34,7 @@ impl State {
                 Player::new(FIELD_RIGHT - 2.0, FIELD_RIGHT),
             ],
             ball: Some(Ball::new()),
+            sounds: vec![],
         }
     }
     pub fn interpolate(&mut self, dt: f64, intents: &Intents) -> Option<PongScene> {
@@ -73,6 +76,7 @@ impl State {
                     0.0,
                 ) {
                     ball.bounce(contact.normal.unwrap(), contact.depth);
+                    self.sounds.push(Sound::Bounce);
                 }
                 let ref endzone = player.endzone;
                 if let Some(_contact) = query::contact(
@@ -83,6 +87,7 @@ impl State {
                     0.0,
                 ) {
                     player.score += 1;
+                    self.sounds.push(Sound::Score);
                     scored = true;
                 }
             }
@@ -90,8 +95,10 @@ impl State {
             let r = ball.r;
             if y + r >= FIELD_TOP {
                 ball.bounce(Vector2::new(0.0, -1.0), y + r - FIELD_TOP);
+                self.sounds.push(Sound::Bounce);
             } else if y - r <= FIELD_BOTTOM {
                 ball.bounce(Vector2::new(0.0, 1.0), y.abs() + r);
+                self.sounds.push(Sound::Bounce);
             }
         }
         if scored {
