@@ -1,5 +1,5 @@
 [package]
-name = "pong_fe_gl"
+name = "pong_fe_glium"
 version = "0.1.0"
 authors = ["Danny Fritz <dannyfritz@gmail.com>"]
 

@@ -59,8 +59,8 @@ fn main() -> Result<(), std::io::Error> {
     let program = {
         glium::Program::from_source(
             &display,
-            std::fs::read_to_string("./pong_fe_gl/shaders/simple.vert")?.as_str(),
-            std::fs::read_to_string("./pong_fe_gl/shaders/simple.frag")?.as_str(),
+            std::fs::read_to_string("./assets/shaders/simple.vert")?.as_str(),
+            std::fs::read_to_string("./assets/shaders/simple.frag")?.as_str(),
             None,
         ).unwrap()
     };

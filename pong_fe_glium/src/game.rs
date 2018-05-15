@@ -12,12 +12,12 @@ pub fn render_game_sound(state: &mut game::State, audio_device: &rodio::Device) 
     for sound in state.sounds.drain(0..) {
         match sound {
             Sound::Bounce => {
-                let file = File::open("./assets/bounce.wav").unwrap();
+                let file = File::open("./assets/sounds/bounce.wav").unwrap();
                 let source = rodio::Decoder::new(BufReader::new(file)).unwrap();
                 rodio::play_raw(audio_device, source.convert_samples());
             }
             Sound::Score => {
-                let file = File::open("./assets/score.wav").unwrap();
+                let file = File::open("./assets/sounds/score.wav").unwrap();
                 let source = rodio::Decoder::new(BufReader::new(file)).unwrap();
                 rodio::play_raw(audio_device, source.convert_samples());
             }
